@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nhập mật khẩu</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #3b0f42 0%, #120014 60%, #050007 100%);
+      overflow: hidden;
+      color: white;
+    }
+
+    /* ánh sáng nền */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 100, 200, 0.18);
+      filter: blur(120px);
+      top: -150px;
+      left: -120px;
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(140, 80, 255, 0.18);
+      filter: blur(120px);
+      bottom: -200px;
+      right: -200px;
+    }
+
+    /* khung */
+    .screen {
+      position: relative;
+      width: 320px;
+      padding: 28px 22px;
+      border-radius: 26px;
+      background: rgba(35, 10, 45, 0.75);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.55);
+      text-align: center;
+    }
+
+    .title {
+      font-size: 17px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
+      margin-bottom: 18px;
+      letter-spacing: 0.2px;
+    }
+
+    /* chấm mật khẩu */
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      transition: 0.2s;
+    }
+
+    .dot.filled {
+      background: white;
+      border-color: white;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
+    /* bàn phím số */
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      height: 56px;
+      border-radius: 14px;
+      border: none;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.15s;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.03);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn.empty {
+      background: transparent;
+      cursor: default;
+    }
+
+    .btn.empty:hover {
+      transform: none;
+    }
+
+    .btn.delete {
+      font-size: 18px;
+    }
+
+    /* thông báo */
+    .message {
+      margin-top: 18px;
+      min-height: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    /* rung khi sai */
+    .shake {
+      animation: shake 0.35s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* loading vòng tròn */
+    .loading {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-left: 8px;
+      transform: translateY(3px);
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* footer nhỏ */
+    .footer {
+      margin-top: 14px;
+      font-size: 11px;
+      opacity: 0.55;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="screen" id="screen">
+    <div class="title">Nhập mật khẩu</div>
+
+    <div class="dots" id="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <div class="keypad">
+      <button class="btn" onclick="press('1')">1</button>
+      <button class="btn" onclick="press('2')">2</button>
+      <button class="btn" onclick="press('3')">3</button>
+
+      <button class="btn" onclick="press('4')">4</button>
+      <button class="btn" onclick="press('5')">5</button>
+      <button class="btn" onclick="press('6')">6</button>
+
+      <button class="btn" onclick="press('7')">7</button>
+      <button class="btn" onclick="press('8')">8</button>
+      <button class="btn" onclick="press('9')">9</button>
+
+      <!-- nút trống giống hình -->
+      <button class="btn empty"></button>
+
+      <button class="btn" onclick="press('0')">0</button>
+
+      <!-- nút xoá -->
+      <button class="btn delete" onclick="del()">
+        <i class="fa-solid fa-delete-left"></i>
+      </button>
+    </div>
+
+    <div class="message" id="msg"></div>
+    <div class="footer">Made with 💜</div>
+  </div>
+
+  <script>
+    // ==============================
+    // 🔥 CẤU HÌNH
+    // ==============================
+
+    // Mật khẩu đúng (bạn thay đổi tuỳ ý)
+    const correctPassword = "1234";
+
+    // Link chuyển sang web HeartBeat bạn gửi
+    const redirectURL =
+      "https://panbap.github.io/HeartBeat/lovequiz.html?id=eyJsIjoiIiwibSI6IiIsIm4iOiJCw6J5IGJpIMahaSBhbmggY8OzIMSRaeG7gXUgbXXhu5FuIG7Ds2kgLi4uLi4iLCJvIjoiQW5oIHRoxrDGoW5nIGLDqSBuaGnhu4F1IGzhuq9tIiwiZyI6IkThuqEgYsOpIG3Dum4gbmdoZSEiLCJoIjoiTmdoZSBz4bq9IGPDsyBxdcOgISJ9";
+
+    // ==============================
+    // LOGIC
+    // ==============================
+
+    let input = "";
+
+    function updateDots() {
+      const dots = document.querySelectorAll(".dot");
+      dots.forEach((dot, index) => {
+        if (index < input.length) dot.classList.add("filled");
+        else dot.classList.remove("filled");
+      });
+    }
+
+    function press(num) {
+      if (input.length >= 4) return;
+
+      input += num;
+      updateDots();
+
+      if (input.length === 4) {
+        checkPassword();
+      }
+    }
+
+    function del() {
+      input = input.slice(0, -1);
+      updateDots();
+      document.getElementById("msg").innerText = "";
+    }
+
+    function resetAll() {
+      input = "";
+      updateDots();
+    }
+
+    function checkPassword() {
+      const msg = document.getElementById("msg");
+      const screen = document.getElementById("screen");
+
+      if (input === correctPassword) {
+        msg.style.color = "#7CFFB3";
+        msg.innerHTML = "Đúng mật khẩu... <span class='loading'></span>";
+
+        setTimeout(() => {
+          window.location.href = redirectURL;
+        }, 1200);
+
+      } else {
+        msg.style.color = "#ff6b6b";
+        msg.innerText = "Sai mật khẩu!";
+
+        screen.classList.add("shake");
+
+        setTimeout(() => {
+          screen.classList.remove("shake");
+          resetAll();
+          msg.innerText = "";
+        }, 900);
+      }
+    }
+
+    // ==============================
+    // Hỗ trợ nhập bằng bàn phím máy tính
+    // ==============================
+    document.addEventListener("keydown", (e) => {
+      if (e.key >= "0" && e.key <= "9") press(e.key);
+      if (e.key === "Backspace") del();
+    });
+  </script>
+
+</body>
+</html>
