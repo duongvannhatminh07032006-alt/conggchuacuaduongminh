@@ -465,32 +465,38 @@
     }
 
     function chooseAnswer(index, btn) {
-      if (selected) return;
-      selected = true;
-
       const q = quizData[currentQuestion];
       const allBtns = document.querySelectorAll(".answer-btn");
-
+    
+      // Nếu đã đúng rồi thì không cho bấm tiếp nữa
+      if (selected) return;
+    
       if (index === q.correct) {
+        selected = true;
+    
         btn.classList.add("correct");
         document.getElementById("quizMsg").style.color = "#7CFFB3";
         document.getElementById("quizMsg").innerText = "Đúng rồi 💜";
-
+    
+        // Disable tất cả nút sau khi đúng
+        allBtns.forEach(b => b.disabled = true);
+    
         document.getElementById("nextBtn").style.display = "block";
-
+    
       } else {
         btn.classList.add("wrong");
-        allBtns[q.correct].classList.add("correct");
-
+    
         document.getElementById("quizMsg").style.color = "#ff6b6b";
-        document.getElementById("quizMsg").innerText = "Sai rồi 😭 thử lại từ đầu nha!";
-
+        document.getElementById("quizMsg").innerText = "Sai rồi 😭 thử lại đi!";
+    
+        // Sau 600ms tự bỏ màu đỏ để chọn lại
         setTimeout(() => {
-          showStep("stepPassword");
-          resetAll();
-        }, 1300);
+          btn.classList.remove("wrong");
+          document.getElementById("quizMsg").innerText = "";
+        }, 600);
       }
     }
+
 
     function nextQuestion() {
       currentQuestion++;
