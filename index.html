@@ -105,7 +105,7 @@
       100% { opacity: 0; transform: translateY(120vh) scale(0.8) rotate(360deg); }
     }
     .screen {
-      width: min(90vw, 360px);
+      width: min(92vw, 900px);
       max-height: 95dvh;
       overflow-y: auto;
       padding: clamp(20px, 5vw, 32px) clamp(16px, 4vw, 28px);
@@ -268,7 +268,6 @@
       background: rgba(255,182,217,0.5);
       transform: scale(1.1);
     }
-
     /* ===========================
        STEP LETTER (LỜI NHẮN NHỦ)
     ============================ */
@@ -342,16 +341,13 @@
     }
   </style>
 </head>
-
 <body>
   <div class="particles" id="particles"></div>
-
   <div class="screen" id="screen">
 
     <!-- STEP PASSWORD -->
     <div class="step active" id="stepPassword">
       <div class="title">Một ngày khó quên</div>
-
       <div class="dots" id="dots">
         <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
       </div>
@@ -372,7 +368,7 @@
       </div>
 
       <div class="message" id="msg"></div>
-      <div class="footer">Gợi ý: Ngày kỷ niệm của chúng ta</div>
+      <div class="footer">Gợi ý: Ngày kỷ niệm của chúng mình</div>
     </div>
 
     <!-- STEP QUIZ -->
@@ -384,12 +380,12 @@
         <button class="next-btn" id="nextBtn">Tiếp nhó ➜</button>
         <div class="message" id="quizMsg"></div>
       </div>
-      <div class="footer">Không đúng không cho qua nha bé 💕</div>
+      <div class="footer">Không đúng anh hong cho qua đou💕</div>
     </div>
 
     <!-- STEP LETTER -->
     <div class="step" id="stepLetter">
-      <div class="title">Gửi em, cô công chúa của anh 💗</div>
+      <div class="title">Gửi em, cô công chúa của anh💗</div>
 
       <div class="letter-layout">
         <div class="letter-box">
@@ -397,7 +393,8 @@
         </div>
 
         <div class="img-box">
-          <img id="loveImg" src="hun.jpg" alt="Ảnh tụi mình">
+          <!-- CHỈ SỬA ẢNH Ở ĐÂY -->
+          <img id="loveImg" src="emhunanh.jpg" alt="Ảnh tụi mình">
           <div class="photo-hint">Chạm vào ảnh để đổi ảnh nha bé 😘</div>
         </div>
       </div>
@@ -422,7 +419,7 @@
 
   <!-- AUDIO -->
   <audio id="bgMusic" loop preload="auto">
-    <source src="Khongthoigian.mp3" type="audio/mpeg">
+    <source src="Khongthoigiannew.mp3" type="audio/mpeg">
     Trình duyệt của bạn không hỗ trợ audio.
   </audio>
 
@@ -433,34 +430,37 @@
   <script>
     const PASS = "1806";
     const REDIRECT = "https://panbap.github.io/HeartBeat/lovequiz.html?id=eyJsIjoiIiwibSI6IiIsIm4iOiJCw6J5IGJpIMahaSBhbmggY8OzIMSRaeG7gXUgbXXhu5FuIG7Ds2kuLi4uIiwibyI6IkFuaCB0aMawxqFuZyBiw6kgbmhp4buBdSBs4bqvbSAiLCJnIjoiROG6oSBiw6kgbmdoZSEiLCJoIjoiTmdoZSBz4bq9IGPDsyBxdcOgIG5ow7MhIn0%3D";
-
     const quiz = [
-      { q: "1) Tin nhắn mở màn định mệnh của tụi mình là gì nè💌", a: ["Helu Bèo","Hellu Bèo","Dô nghiện","Helu Tiêu😒"], c:0 },
-      { q: "2) Anh sinh ngày mấy và thuộc cung hoàng đạo nào?", a: ["07/03 cung Thiên Bình","07/03 cung Song Ngư","11/07 cung Cự Giải","Bé hong nhớ"], c:1 },
-      { q: "3) Ngày SetLove của tụi mình là ngày nào? (Sai là anh buồn nguyên kiếp 😭)", a: ["18/10","19/08","18/09","Bé hong nhớ"], c:2 },
-      { q: "4) Theo em, điều anh “tệ” nhất là gì?", a: ["Hay ghen","Hay khóc","Không chiều chuộng em","On core roét"], c:3 },
-      { q: "5) Trong muôn vàn lý do, em biết vì sao anh lại chọn ở bên em không? 🌷", a: ["Sự đồng cảm","Vì xinh","Sự ngây ngô","Em yêu anh"], c:0 },
-      { q: "6) Khoảnh khắc nào của tụi mình khiến em nhớ hoài không quên? 🥺💞", a: ["Em nói anh nghe nè"], c:0 },
-      { q: "7) Lý do em chọn anh là gì… (không được trả lời cho có nha bé 😤💗)", a: ["...."], c:0 },
-      { q: "8) Buổi FirstDate huyền thoại: tụi mình đã đi đâu và làm gì? 😳💘", a: ["Đi cà phơ","Đi tô tượng","Hun nhau","Dạ tất cả đều đúng ạ"], c:3 },
-      { q: "9) Em tự thấy bản thân em là người như thế nào? (câu này dễ mà sai là anh dỗi 😌)", a: ["Quá xinh","Quá tâm lý","Yêu Dương Minh nhất","Bé lấy hết"], c:3 },
-      { q: "10) Cuối cùng… anh muốn nói với em điều gì đây? 💖", a: ["ANH THƯƠNG EM LẮM DUYÊN"], c:0 }
+      { q: "1) Tin nhắn đầu tiên của chúng mình là gì?", a: ["Helu Bèo","Hellu Bèo","Dô nghiện","Helu Tiêu😒"], c:0 },
+      { q: "2) Anh sinh ngày bao nhiêu và cung gì?", a: ["08/03 cung Thiên Bình","07/03 cung Song Ngư","11/07 cung Cự Giải","Bé hong nhớ"], c:1 },
+      { q: "3) SetLove là ngày nào?", a: ["18/10","19/08","18/09","Bé hong nhớ"], c:2 },
+      { q: "4) Điều gì em thấy anh tệ nhất?", a: ["Hay ghen","Hay khóc","Không chiều chuộng em","On core roét"], c:3 },
+      { q: "5) Em nghĩ điều gì anh lại chọn bên em?", a: ["Sự đồng cảm","Vì xinh","Sự ngây ngô","Em yêu anh"], c:0 },
+      { q: "6) Khoảnh khắc kỉ niệm của hai đứa khiến em nhớ nhất?", a: ["Em nói anh nghe nè"], c:0 },
+      { q: "7) Lý do tại sao em lại chọn anh?", a: ["...."], c:0 },
+      { q: "8) FirstDate mình đã đi đâu làm gì?", a: ["Đi cà phơ","Đi tô tượng","Hun nhau","Dạ tất cả đều đúng ạ"], c:3 },
+      { q: "9) Em thấy mình là người như thế nào?", a: ["Quá xinh","Quá tâm lý","Yêu Dương Minh nhất","Bé lấy hết"], c:3 },
+      { q: "10) Anh muốn nói là?", a: ["ANH THƯƠNG EM LẮM DUYÊN"], c:0 }
+      
+    
     ];
 
-    // LỜI NHẮN NHỦ
-    const loveMessage = `Anh là một thằng khờ, dù đã ôm em trong lòng rồi mà vẫn nhớ em đến nghẹn cả những ngày chưa kịp tới.
-Yêu anh thì đừng hỏi tình yêu màu gì, vì em sẽ thấy nó trong từng ánh mắt, từng cái nắm tay và từng phút giây em ở cạnh anh.
-Anh biết phía trước còn dài và sẽ có nhiều điều làm mình mệt, nhưng rồi tất cả sẽ nhẹ thôi nếu chúng mình vẫn chọn đi cùng nhau.
-Dù cuộc đời có bắt anh học thêm bao nhiêu bài học nữa, anh vẫn sẽ không bao giờ quên một điều, đó là yêu em hơn cả chính mình.
-Mong rằng nụ cười và hạnh phúc của em luôn có anh ở đó, có đôi ta bên nhau mãi nhé cô công chúa bé nhỏ của anh 💗`;
+    // LỜI NHẮN NHỦ (giữ nguyên)
+    const loveMessage = `Anh là một thằng khùng điên dẫu cứ ôm em trong lòng rồi mà đã nhớ em những ngày sắp tới.
+Yêu anh thì đừng hỏi anh tình yêu màu gì rồi em sẽ thấy nó trong suốt quãng thời gian em bên anh thôi.
+Biết là đường đi phía trước sẽ còn rất dài và nhiều sự khó khăn nhưng sẽ qua thôi nếu chúng mình đi cùng nhau.
+Dù cho cuộc đời có dạy anh biết bao điều đi nữa, anh sẽ không quên được một điều, đó là yêu em.
+Mong rằng sự hạnh phúc của em luôn có sự hiện diện của anh, của đôi ta nhé hỡi cô công chúa của anh 💗`;
 
-    // 5 ẢNH LOOP
+    /* ==========================
+       CHỈ SỬA ẢNH Ở ĐÂY
+       ========================== */
     const images = [
-      "hun.jpg",
-      "photo.jpg",
-      "mu.jpg",
-      "hun.jpg",
-      "photo.jpg"
+      "anhdoimu.jpg",
+      "choem.jpg",
+      "emhunanh.jpg",
+      "photobook.jpg",
+      "xemphim.jpg"
     ];
 
     let imgIndex = 0;
@@ -486,24 +486,6 @@ Mong rằng nụ cười và hạnh phúc của em luôn có anh ở đó, có �
     let qIndex = 0;
     let answered = false;
 
-    // 🔥 FIX QUAN TRỌNG: unlock audio để trình duyệt cho phép phát
-    let audioUnlocked = false;
-
-    function unlockAudio() {
-      if (audioUnlocked) return;
-      audioUnlocked = true;
-
-      el.audio.volume = 0;
-      el.audio.play().then(() => {
-        el.audio.pause();
-        el.audio.currentTime = 0;
-        el.audio.volume = 0.85;
-        console.log("Audio unlocked OK!");
-      }).catch(err => {
-        console.log("Audio unlock failed:", err);
-      });
-    }
-
     function updateDots() {
       el.dots.forEach((d, i) => d.classList.toggle("filled", i < pin.length));
     }
@@ -521,8 +503,6 @@ Mong rằng nụ cười và hạnh phúc của em luôn có anh ở đó, có �
     }
 
     function addNum(num) {
-      unlockAudio(); // ✅ unlock ngay khi bấm số
-
       if (pin.length >= 4) return;
       pin += num;
       updateDots();
@@ -539,10 +519,7 @@ Mong rằng nụ cười và hạnh phúc của em luôn có anh ở đó, có �
       if (pin === PASS) {
         el.msg.style.color = "#7CFFB3";
         el.msg.innerHTML = "Gút chop ... <span class='loading'></span>";
-
-        // ✅ phát nhạc ngay khi đúng
         playMusicSafe();
-
         setTimeout(() => {
           show("stepQuiz");
           startQuiz();
@@ -551,7 +528,6 @@ Mong rằng nụ cười và hạnh phúc của em luôn có anh ở đó, có �
         el.msg.style.color = "#ff6b6b";
         el.msg.textContent = "Sai gòi😭";
         el.screen.classList.add("shake");
-
         setTimeout(() => {
           el.screen.classList.remove("shake");
           pin = "";
@@ -575,11 +551,9 @@ Mong rằng nụ cười và hạnh phúc của em luôn có anh ở đó, có �
       answered = false;
       el.quizMsg.textContent = "";
       el.nextBtn.style.display = "none";
-
       const curr = quiz[qIndex];
       el.qText.textContent = curr.q;
       el.answers.innerHTML = "";
-
       curr.a.forEach((txt, i) => {
         const b = document.createElement("button");
         b.className = "answer-btn";
@@ -591,22 +565,19 @@ Mong rằng nụ cười và hạnh phúc của em luôn có anh ở đó, có �
 
     function pick(idx, btn) {
       if (answered) return;
-
       const curr = quiz[qIndex];
       const all = el.answers.querySelectorAll(".answer-btn");
-
       if (idx === curr.c) {
         answered = true;
         btn.classList.add("correct");
         el.quizMsg.style.color = "#7CFFB3";
-        el.quizMsg.textContent = "Hay quá ta 😘";
+        el.quizMsg.textContent = "Hay quá ta";
         all.forEach(b => b.disabled = true);
         el.nextBtn.style.display = "block";
       } else {
         btn.classList.add("wrong");
         el.quizMsg.style.color = "#ff6b6b";
         el.quizMsg.textContent = "Shao bé lại shine😭!";
-
         setTimeout(() => {
           btn.classList.remove("wrong");
           el.quizMsg.textContent = "";
@@ -688,14 +659,12 @@ Mong rằng nụ cười và hạnh phúc của em luôn có anh ở đó, có �
         particle.className = "particle";
         if (Math.random() > 0.6) particle.classList.add("heart");
         else particle.classList.add("star");
-
         const size = Math.random() * 3 + 0.8;
         particle.style.width = particle.style.height = size + "px";
         particle.style.left = Math.random() * 100 + "vw";
         particle.style.top = Math.random() * -30 + "vh";
         particle.style.animationDuration = (Math.random() * 16 + 12) + "s";
         particle.style.animationDelay = "-" + Math.random() * 25 + "s";
-
         container.appendChild(particle);
       }
     }
@@ -703,8 +672,6 @@ Mong rằng nụ cười và hạnh phúc của em luôn có anh ở đó, có �
 
     // NÚT NHẠC
     el.musicBtn.onclick = () => {
-      unlockAudio();
-
       if (el.audio.paused) {
         el.audio.play().then(() => {
           el.musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -717,4 +684,3 @@ Mong rằng nụ cười và hạnh phúc của em luôn có anh ở đó, có �
   </script>
 </body>
 </html>
-
