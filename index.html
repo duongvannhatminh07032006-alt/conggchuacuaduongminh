@@ -436,13 +436,8 @@
     <source src="Khongthoigiannew.mp3" type="audio/mpeg">
     Trình duyệt của bạn không hỗ trợ audio.
   </audio>
-  <audio id="soundWrong" preload="auto">
-    <source src="tere.mp3" type="audio/mpeg">
-  </audio>
-
-  <audio id="soundCorrect" preload="auto">
-    <source src="ting.mp3" type="audio/mpeg">
-  </audio>
+  <audio id="soundWrong" src="tere.mp3" preload="auto"></audio>
+  <audio id="soundCorrect" src="ting.mp3" preload="auto"></audio>
 
   <button id="musicBtn" title="Phát / Dừng nhạc">
     <i class="fas fa-music"></i>
@@ -498,6 +493,8 @@ Mong rằng sự hạnh phúc của em luôn có sự hiện diện của anh, c
       qText: document.getElementById("qText"),
       musicBtn: document.getElementById("musicBtn"),
       audio: document.getElementById("bgMusic"),
+      wrongSound: document.getElementById("wrongSound"),
+      correctSound: document.getElementById("correctSound"),
       letterText: document.getElementById("letterText"),
       loveImg: document.getElementById("loveImg"),
       doneBtn: document.getElementById("doneBtn")
@@ -553,6 +550,10 @@ Mong rằng sự hạnh phúc của em luôn có sự hiện diện của anh, c
 
     function checkPin() {
       if (pin === PASS) {
+
+        el.correctSound.currentTime = 0;
+        el.correctSound.play();
+        
         el.msg.style.color = "#7CFFB3";
         el.msg.innerHTML = "Gút chop ... <span class='loading'></span>";
         playMusicSafe();
